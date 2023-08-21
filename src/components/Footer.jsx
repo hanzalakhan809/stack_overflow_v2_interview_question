@@ -5,7 +5,7 @@ export default function Footer() {
         <>
             <div className='flex justify-between w-full px-6 text-slate-400 border-t border-b h-16 cursor-pointer'>
                 {/* LINK */}
-                <div className='flex gap-2 w-[60%]'>
+                <div className='flex gap-3 w-[70%]'>
                     <p className='m-auto'>about us</p>
                     <p className='m-auto'>tour</p>
                     <p className='m-auto'>help</p>
