@@ -1,7 +1,24 @@
 import React from "react"
-import { Bars3Icon,MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
-export default function Navbar() {
+export default function Navbar(props) {
+    const {  searchText,setSearchText,setFilteredQuestions,questions } = props;
+
+    const handleSearchChange = (event) => {
+        const inputText = event.target.value.toLowerCase();
+        setSearchText(inputText);
+
+        if (inputText !== "") {
+            const filtered = questions?.items?.filter((question) =>
+                question?.title.toLowerCase().includes(inputText)
+            );
+            setFilteredQuestions({items:filtered});
+        } else {
+            setFilteredQuestions(questions); 
+        }
+    };
+
+
     return (
         <>
             <nav className='flex h-12 w-full justify-between items-center '>
@@ -18,8 +35,9 @@ export default function Navbar() {
 
                 {/* INPUT */}
                 <div className='flex border w-[55%] rounded-md px-2 py-1 '>
-                <MagnifyingGlassIcon className="w-5 text-slate-500"/>
-                    <input type="search" placeholder='Search' className='ml-1 outline-none' />
+                    <MagnifyingGlassIcon className="w-5 text-slate-500" />
+                    <input type="search" placeholder='Search' className='ml-1 outline-none' value={searchText}
+                        onChange={handleSearchChange} />
 
                 </div>
                 <div>
